@@ -1,0 +1,24 @@
+{{define "content"}}
+<h1>Recent Posts</h1>
+
+{{if not .Posts}}
+  <p class="empty">No posts yet.</p>
+{{end}}
+
+<div class="post-grid">
+  {{range .Posts}}
+  <a href="/weblog/{{.ID}}" class="post-card">
+    {{if .ImagePath}}
+      <img src="{{.ImagePath}}" alt="{{.Title}}" class="post-thumb">
+    {{end}}
+    <div class="post-card-body">
+      <h2>{{.Title}}</h2>
+      <p class="post-meta">
+        Author: {{.Author.Username}}
+        {{if .IsPrivate}}<span class="badge-private">Private</span>{{else}}<span class="badge-public">Public</span>{{end}}
+      </p>
+    </div>
+  </a>
+  {{end}}
+</div>
+{{end}}

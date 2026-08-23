@@ -1,0 +1,36 @@
+{{define "content"}}
+<h1>Write New Post</h1>
+
+{{if .Error}}<p class="error">{{.Error}}</p>{{end}}
+
+<form action="/weblog/new" method="POST" enctype="multipart/form-data" class="form">
+  <label>Title</label>
+  <input type="text" name="title" required>
+
+  <label>Content</label>
+  <textarea name="content" rows="8" required></textarea>
+
+  <label>Image (optional)</label>
+  <input type="file" name="image" accept="image/*">
+
+  <label>Privacy Status</label>
+  <select name="privacy" id="privacy-select" onchange="toggleShare()">
+    <option value="public">Public</option>
+    <option value="private">Private</option>
+  </select>
+
+  <div id="share-field" style="display:none;">
+    <label>Share with (comma-separated usernames)</label>
+    <input type="text" name="shared_with" placeholder="alice, bob">
+  </div>
+
+  <button type="submit">Publish Post</button>
+</form>
+
+<script>
+  function toggleShare() {
+    var val = document.getElementById('privacy-select').value;
+    document.getElementById('share-field').style.display = (val === 'private') ? 'block' : 'none';
+  }
+</script>
+{{end}}

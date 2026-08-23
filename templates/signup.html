@@ -1,0 +1,14 @@
+{{define "content"}}
+<h1>Sign Up</h1>
+{{if .Error}}<p class="error">{{.Error}}</p>{{end}}
+<form action="/signup" method="POST" class="form">
+  <label>Username</label>
+  <input type="text" name="username" required>
+
+  <label>Password</label>
+  <input type="password" name="password" required>
+
+  <button type="submit">Sign Up</button>
+</form>
+<p>Already have an account? <a href="/login">Login</a></p>
+{{end}}
